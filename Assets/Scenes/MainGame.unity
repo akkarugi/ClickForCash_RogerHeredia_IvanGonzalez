@@ -913,10 +913,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 72
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1015,8 +1015,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1842721015}
+  transferButton: {fileID: 464321295}
   counterText: {fileID: 760145374}
-  buttonAnimator: {fileID: 1842721018}
+  cryptoText: {fileID: 2111700309}
+  initialPoints: 1000000000
 --- !u!1 &1004871116
 GameObject:
   m_ObjectHideFlags: 0
