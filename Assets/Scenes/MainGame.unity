@@ -972,6 +972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 781260076}
+  - component: {fileID: 781260077}
   m_Layer: 5
   m_Name: CoinSystem
   m_TagString: Untagged
@@ -1001,6 +1002,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &781260077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781260075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409a39fe79907f64ead936045953c0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1842721015}
+  counterText: {fileID: 760145374}
+  buttonAnimator: {fileID: 1842721018}
 --- !u!1 &1004871116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,6 +2008,7 @@ GameObject:
   - component: {fileID: 1842721017}
   - component: {fileID: 1842721016}
   - component: {fileID: 1842721015}
+  - component: {fileID: 1842721018}
   m_Layer: 5
   m_Name: TouchCoin
   m_TagString: Untagged
@@ -2102,6 +2119,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842721013}
   m_CullTransparentMesh: 1
+--- !u!95 &1842721018
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842721013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce17dff4808bf0b49bf0f45a6c6ec93f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2013120568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,7 +2150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013120569}
   m_Layer: 5
-  m_Name: AddSystem
+  m_Name: AddsSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
