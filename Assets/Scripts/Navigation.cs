@@ -7,6 +7,6 @@ public class Navigation : MonoBehaviour
 {
     public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName);
     }
 }
