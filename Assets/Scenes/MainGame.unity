@@ -826,7 +826,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.85
+  m_fontSize: 72
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -928,10 +928,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1842721015}
-  transferButton: {fileID: 0}
+  transferButton: {fileID: 1789922721}
   counterText: {fileID: 760145374}
-  cryptoText: {fileID: 0}
-  initialPoints: 1000000000
+  cryptoText: {fileID: 2052118731}
+  multiplierButton: {fileID: 684258381}
+  multiplierIcon: {fileID: 1659568672}
+  timerText: {fileID: 1312057317}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  initialPoints: 0
+  multiplierDuration: 20
+  multiplierFactor: 2
+  resetTimerDuration: 10
 --- !u!1 &861400942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
