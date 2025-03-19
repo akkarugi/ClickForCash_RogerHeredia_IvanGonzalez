@@ -4,18 +4,16 @@ using TMPro;
 
 public class CoinClick : MonoBehaviour
 {
-    // Referencias principales
-    public Button button; // Botón principal para sumar puntos
-    public Button transferButton; // Botón de transferir puntos por Crypto
-    public TMP_Text counterText; // Texto del contador de puntos
-    public TMP_Text cryptoText; // Texto del contador de Crypto
+    public Button button;
+    public Button transferButton;
+    public TMP_Text counterText;
+    public TMP_Text cryptoText;
 
-    // Nueva funcionalidad del botón con temporizador
-    public Button multiplierButton; // Botón del multiplicador
-    public Image multiplierIcon; // Imagen asociada al botón (desaparecerá cuando el contador llegue a 0)
-    public TMP_Text timerText; // Texto del temporizador en el botón
-    public Color redColor = Color.red; // Color rojo del botón
-    public Color greenColor = Color.green; // Color verde del botón
+    public Button multiplierButton;
+    public Image multiplierIcon;
+    public TMP_Text timerText;
+    public Color redColor = Color.red;
+    public Color greenColor = Color.green;
 
     [SerializeField] private double initialPoints = 0;
     private double counter;
@@ -27,42 +25,36 @@ public class CoinClick : MonoBehaviour
     private const int MAX_POINTS_NEEDED = 100000;
     private const int POINTS_INCREMENT = 10000;
 
-    // Variables del multiplicador
-    private bool isMultiplierActive = false; // Indica si el multiplicador está activo
-    [SerializeField] private float multiplierDuration = 240f; // Duración del multiplicador en segundos (editable en el Inspector)
-    [SerializeField] private int multiplierFactor = 2; // Factor de multiplicación (editable en el Inspector)
-    private float multiplierTimer = 0f; // Tiempo restante del multiplicador
-    private int multiplierLevel = 1; // Nivel del multiplicador (1 = x1, 2 = x2, 4 = x4)
+    private bool isMultiplierActive = false;
+    [SerializeField] public int multiplierFactor = 2;
+    private float multiplierDuration = 240f;
+    private float multiplierTimer = 0f;
+    public int multiplierLevel = 1;
 
-    // Variables del temporizador del botón
-    [SerializeField] private float resetTimerDuration = 150f; // Duración del temporizador de reseteo en segundos (2:30 minutos, editable en el Inspector)
-    private float timer; // Tiempo restante del temporizador
-    private bool isTimerRunning = true; // Indica si el temporizador está activo
-    private bool isWaitingForClick = false; // Indica si el botón está esperando un clic después de llegar a 0
+    [SerializeField] private float resetTimerDuration = 150f;
+    private float timer;
+    private bool isTimerRunning = true;
+    private bool isWaitingForClick = false;
 
     void Start()
     {
         counter = initialPoints;
-        timer = resetTimerDuration; // Inicializar el temporizador con el valor configurado
+        timer = resetTimerDuration;
 
-        // Asignar listeners a los botones
         button.onClick.AddListener(OnButtonClick);
         transferButton.onClick.AddListener(OnTransferButtonClick);
         multiplierButton.onClick.AddListener(OnMultiplierButtonClick);
 
-        // Inicializar textos
         UpdateCounterText();
         UpdateCryptoText();
         UpdateTimerText();
 
-        // Configurar el botón del multiplicador
         multiplierButton.image.color = redColor;
         multiplierIcon.enabled = true;
     }
 
     void Update()
     {
-        // Actualizar el temporizador del botón
         if (isTimerRunning && timer > 0)
         {
             timer -= Time.deltaTime;
@@ -70,21 +62,18 @@ public class CoinClick : MonoBehaviour
         }
         else if (isTimerRunning && timer <= 0)
         {
-            // Cuando el temporizador llega a 0, cambiar el botón a verde
             isTimerRunning = false;
             isWaitingForClick = true;
             multiplierButton.image.color = greenColor;
             multiplierIcon.enabled = false;
-            timerText.text = "0:00"; // Mostrar 0:00 en el temporizador
+            timerText.text = "0:00";
         }
 
-        // Actualizar el temporizador del multiplicador
         if (isMultiplierActive)
         {
             multiplierTimer -= Time.deltaTime;
             if (multiplierTimer <= 0)
             {
-                // Cuando el multiplicador termina, resetear al nivel base
                 isMultiplierActive = false;
                 multiplierLevel = 1;
             }
@@ -120,14 +109,12 @@ public class CoinClick : MonoBehaviour
     {
         if (isWaitingForClick)
         {
-            // Reiniciar el temporizador del botón
             timer = resetTimerDuration;
             isTimerRunning = true;
             isWaitingForClick = false;
             multiplierButton.image.color = redColor;
             multiplierIcon.enabled = true;
 
-            // Activar el multiplicador
             isMultiplierActive = true;
             multiplierLevel *= multiplierFactor;
             multiplierTimer = multiplierDuration;
@@ -143,7 +130,7 @@ public class CoinClick : MonoBehaviour
     private void UpdateCryptoText()
     {
         if (cryptoText != null)
-            cryptoText.text = crypto.ToString(); // Solo muestra el número de Crypto
+            cryptoText.text = crypto.ToString();
     }
 
     private void UpdateTimerText()
@@ -154,5 +141,11 @@ public class CoinClick : MonoBehaviour
             int seconds = Mathf.FloorToInt(timer % 60);
             timerText.text = $"{minutes}:{seconds:D2}";
         }
+    }
+
+    public void AddPoints(double pointsToAdd)
+    {
+        counter += pointsToAdd;
+        UpdateCounterText();
     }
 }
