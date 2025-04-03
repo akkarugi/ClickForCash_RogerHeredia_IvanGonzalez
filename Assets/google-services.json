@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1092667528618",
+    "project_id": "click-for-cash-75b50",
+    "storage_bucket": "click-for-cash-75b50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092667528618:android:a9cde749bdc1a8913b47d3",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.ClickForCash_RogerHeredia_IvanGonzalez"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfQ_4zRhSisUByT7qv8TOZOXwHuDQu_sE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
