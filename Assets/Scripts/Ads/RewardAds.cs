@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -9,6 +7,11 @@ public class RewardAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     [SerializeField] private string iosAdUnitId;
 
     private string unitId;
+    public bool IsLoaded { get; private set; }
+    public bool IsShowing { get; private set; }
+
+    public delegate void AdCompleteHandler(bool completed);
+    public static event AdCompleteHandler OnAdComplete;
 
     private void Awake()
     {
@@ -21,47 +24,54 @@ public class RewardAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 #endif
     }
 
-
     public void LoadRewardedlAd()
     {
-        Advertisement.Load(unitId, this);
-
+        if (Advertisement.isInitialized)
+        {
+            IsLoaded = false;
+            Advertisement.Load(unitId, this);
+        }
     }
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        Debug.Log("Interstital Ad Loaded");
+        if (placementId == unitId)
+        {
+            IsLoaded = true;
+            Debug.Log("Rewarded Ad Loaded and ready");
+        }
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
+        Debug.LogError($"Rewarded ad failed to load: {error.ToString()} - {message}");
     }
 
     public void ShowRewardedAd()
     {
-        Advertisement.Show(unitId, this);
-        LoadRewardedlAd();
+        if (IsLoaded)
+        {
+            IsShowing = true;
+            Advertisement.Show(unitId, this);
+        }
     }
 
-    #region ShowCallbacks
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
+        IsShowing = false;
+        OnAdComplete?.Invoke(false);
+        Debug.LogError($"Rewarded ad show failed: {error.ToString()} - {message}");
     }
 
-    public void OnUnityAdsShowStart(string placementId)
-    {
-    }
+    public void OnUnityAdsShowStart(string placementId) { }
 
-    public void OnUnityAdsShowClick(string placementId)
-    {
-    }
+    public void OnUnityAdsShowClick(string placementId) { }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-       if (placementId == unitId && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
-        {
-            Debug.Log("Ads fully watch");        }
+        IsShowing = false;
+        bool completed = showCompletionState == UnityAdsShowCompletionState.COMPLETED;
+        OnAdComplete?.Invoke(completed);
+        LoadRewardedlAd();
     }
-    #endregion
 }
-

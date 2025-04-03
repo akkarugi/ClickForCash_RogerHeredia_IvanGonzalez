@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -10,8 +8,7 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] private bool isTesting;
 
     private string gameId;
-
-  
+    public bool IsInitialized { get; private set; } = false;
 
     private void Awake()
     {
@@ -19,22 +16,24 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener
         gameId = adroidGameId;
 #elif UNITY_IOS
         gameId = iosGameId;
-
 #elif UNITY_EDITOR
-        gameId = androidGameId;
+        gameId = adroidGameId;
 #endif
 
-        if (Advertisement.isInitialized && Advertisement.isSupported)
+        if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
             Advertisement.Initialize(gameId, isTesting, this);
         }
-      
     }
 
     public void OnInitializationComplete()
     {
-        Debug.Log("Ads initialized...");
+        IsInitialized = true;
+        Debug.Log("Ads initialized successfully");
     }
 
-    public void OnInitializationFailed(UnityAdsInitializationError error, string message){  }
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
+        Debug.LogError($"Ads initialization failed: {error.ToString()} - {message}");
+    }
 }

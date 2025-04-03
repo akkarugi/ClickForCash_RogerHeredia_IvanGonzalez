@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class CoinClick : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class CoinClick : MonoBehaviour
     public Button transferButton;
     public TMP_Text counterText;
     public TMP_Text cryptoText;
-
     public Button multiplierButton;
     public Image multiplierIcon;
     public TMP_Text timerText;
@@ -35,6 +35,17 @@ public class CoinClick : MonoBehaviour
     private float timer;
     private bool isTimerRunning = true;
     private bool isWaitingForClick = false;
+
+    private void Awake()
+    {
+        StartCoroutine(DisplayBannerWithDelay());
+    }
+
+    private IEnumerator DisplayBannerWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        AdsManager.Instance.bannerAds.ShowBannerAd();
+    }
 
     void Start()
     {
@@ -102,6 +113,16 @@ public class CoinClick : MonoBehaviour
                 pointsNeeded += POINTS_INCREMENT;
             UpdateCounterText();
             UpdateCryptoText();
+
+            if (AdsManager.Instance.interstitialAds.IsLoaded)
+            {
+                AdsManager.Instance.interstitialAds.ShowInterstitialAd();
+            }
+            else
+            {
+                Debug.Log("Interstitial ad not ready, trying to load...");
+                AdsManager.Instance.interstitialAds.LoadInterstitalAd();
+            }
         }
     }
 
@@ -109,16 +130,61 @@ public class CoinClick : MonoBehaviour
     {
         if (isWaitingForClick)
         {
-            timer = resetTimerDuration;
-            isTimerRunning = true;
-            isWaitingForClick = false;
-            multiplierButton.image.color = redColor;
-            multiplierIcon.enabled = true;
-
-            isMultiplierActive = true;
-            multiplierLevel *= multiplierFactor;
-            multiplierTimer = multiplierDuration;
+            if (AdsManager.Instance.rewardedAds.IsLoaded)
+            {
+                AdsManager.Instance.rewardedAds.ShowRewardedAd();
+                StartCoroutine(WaitForRewardAdCompletion());
+            }
+            else
+            {
+                Debug.Log("Rewarded ad not ready, trying to load...");
+                AdsManager.Instance.rewardedAds.LoadRewardedlAd();
+            }
         }
+    }
+
+    private IEnumerator WaitForRewardAdCompletion()
+    {
+        bool adCompleted = false;
+        RewardAds.OnAdComplete += (completed) => {
+            adCompleted = completed;
+        };
+
+        while (!adCompleted && AdsManager.Instance.rewardedAds.IsShowing)
+        {
+            yield return null;
+        }
+
+        if (adCompleted)
+        {
+            ApplyMultiplier();
+        }
+        else
+        {
+            ResetMultiplierTimer();
+        }
+    }
+
+    private void ApplyMultiplier()
+    {
+        timer = resetTimerDuration;
+        isTimerRunning = true;
+        isWaitingForClick = false;
+        multiplierButton.image.color = redColor;
+        multiplierIcon.enabled = true;
+
+        isMultiplierActive = true;
+        multiplierLevel *= multiplierFactor;
+        multiplierTimer = multiplierDuration;
+    }
+
+    private void ResetMultiplierTimer()
+    {
+        timer = resetTimerDuration;
+        isTimerRunning = true;
+        isWaitingForClick = false;
+        multiplierButton.image.color = redColor;
+        multiplierIcon.enabled = true;
     }
 
     private void UpdateCounterText()

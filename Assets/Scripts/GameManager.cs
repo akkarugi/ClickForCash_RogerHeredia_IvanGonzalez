@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public float points { get; private set; } = 0;
     public float maxpoints { get; private set; } = 10000;
-    [SerializeField] private float add_maxpoints = 10000;
+    //[SerializeField] private float add_maxpoints = 10000;
     private List<Multiplier> multipliers = new List<Multiplier>();
     
 

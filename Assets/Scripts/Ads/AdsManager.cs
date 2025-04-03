@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AdsManager : MonoBehaviour
@@ -10,6 +9,7 @@ public class AdsManager : MonoBehaviour
     public RewardAds rewardedAds;
 
     public static AdsManager Instance { get; private set; }
+    public bool AdsReady { get; private set; }
 
     private void Awake()
     {
@@ -20,10 +20,20 @@ public class AdsManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private IEnumerator Start()
+    {
+        while (!initializeAds.IsInitialized)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
 
         bannerAds.LoadBannerAd();
         interstitialAds.LoadInterstitalAd();
         rewardedAds.LoadRewardedlAd();
 
+        yield return new WaitForSeconds(1f);
+        AdsReady = true;
     }
 }

@@ -254,7 +254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 91337877}
-  - component: {fileID: 91337878}
   m_Layer: 5
   m_Name: Game
   m_TagString: Untagged
@@ -284,22 +283,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &91337878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91337876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c447e2d5c9835489f4e647081fc81c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  click_points: 1
-  doubleclick_points: 1.5
-  delayClick: 1
-  points_text: {fileID: 760145374}
 --- !u!1 &96213087
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,8 +494,6 @@ GameObject:
   - component: {fileID: 127050680}
   - component: {fileID: 127050679}
   - component: {fileID: 127050678}
-  - component: {fileID: 127050683}
-  - component: {fileID: 127050684}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -607,52 +588,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &127050683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127050677}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 409a39fe79907f64ead936045953c0af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 1842721015}
-  transferButton: {fileID: 1789922721}
-  counterText: {fileID: 760145374}
-  cryptoText: {fileID: 2052118731}
-  multiplierButton: {fileID: 684258381}
-  multiplierIcon: {fileID: 1659568672}
-  timerText: {fileID: 1312057317}
-  redColor: {r: 1, g: 0, b: 0, a: 1}
-  greenColor: {r: 0, g: 1, b: 0, a: 1}
-  initialPoints: 0
-  multiplierFactor: 2
-  multiplierLevel: 1
-  resetTimerDuration: 10
---- !u!114 &127050684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127050677}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 059927656e4ed0546b9a2118a92c2b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  add250PointsButton: {fileID: 121137356}
-  add3500PointsButton: {fileID: 1505474939}
-  add22000PointsButton: {fileID: 64775056}
-  add50000PointsButton: {fileID: 592099164}
-  earnPointsAutomaticallyButton: {fileID: 397282610}
-  doubleClickPointsButton: {fileID: 982284989}
-  increaseMultiplierTo3Button: {fileID: 1464630543}
-  increaseMultiplierTo5Button: {fileID: 0}
-  coinClickScript: {fileID: 127050683}
 --- !u!1 &143369227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,7 +2107,7 @@ GameObject:
   - component: {fileID: 684258382}
   - component: {fileID: 684258381}
   m_Layer: 5
-  m_Name: Add
+  m_Name: Ads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2198,7 +2133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50.1}
   m_SizeDelta: {x: 145, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &684258381
@@ -2951,6 +2886,115 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861400942}
   m_CullTransparentMesh: 1
+--- !u!1 &923928010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923928014}
+  - component: {fileID: 923928013}
+  - component: {fileID: 923928012}
+  - component: {fileID: 923928011}
+  - component: {fileID: 923928016}
+  - component: {fileID: 923928015}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &923928011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923928010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2da913987367cc4d8ee73b4047e9ae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adroidAdUnitId: Interstitial_Android
+  iosAdUnitId: Interstitial_iOS
+--- !u!114 &923928012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923928010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20064f17471ab9c49b31047c65e532e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adroidGameId: 5826731
+  iosGameId: 5826730
+  isTesting: 1
+--- !u!114 &923928013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923928010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6786a5157402758498029b921e3deec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initializeAds: {fileID: 923928012}
+  bannerAds: {fileID: 923928016}
+  interstitialAds: {fileID: 923928011}
+  rewardedAds: {fileID: 923928015}
+--- !u!4 &923928014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923928010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 378.21524, y: 695.8967, z: -2.4897823}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &923928015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923928010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eac15b8e4246394b95931b4a422463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adroidAdUnitId: Banner_Android
+  iosAdUnitId: Banner_iOS
+--- !u!114 &923928016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923928010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bb223b206560149a24eeac047ab2ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adroidAdUnitId: Rewarded_Android
+  iosAdUnitId: Rewarded_iOS
 --- !u!1 &949261137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,7 +3461,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204022902}
-  - component: {fileID: 1204022901}
+  - component: {fileID: 1204022904}
+  - component: {fileID: 1204022903}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3425,19 +3470,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1204022901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204022900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e9cd4de12706c45964c039938d44b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  add_maxpoints: 10000
 --- !u!4 &1204022902
 Transform:
   m_ObjectHideFlags: 0
@@ -3453,6 +3485,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1204022903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204022900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059927656e4ed0546b9a2118a92c2b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  add250PointsButton: {fileID: 121137356}
+  add3500PointsButton: {fileID: 1505474939}
+  add22000PointsButton: {fileID: 64775056}
+  add50000PointsButton: {fileID: 592099164}
+  earnPointsAutomaticallyButton: {fileID: 397282610}
+  doubleClickPointsButton: {fileID: 982284989}
+  increaseMultiplierTo3Button: {fileID: 1464630543}
+  increaseMultiplierTo5Button: {fileID: 0}
+  coinClickScript: {fileID: 1204022904}
+--- !u!114 &1204022904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204022900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409a39fe79907f64ead936045953c0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1842721015}
+  transferButton: {fileID: 1789922721}
+  counterText: {fileID: 760145374}
+  cryptoText: {fileID: 2052118731}
+  multiplierButton: {fileID: 684258381}
+  multiplierIcon: {fileID: 1659568672}
+  timerText: {fileID: 1312057317}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  initialPoints: 0
+  multiplierFactor: 2
+  multiplierLevel: 1
+  resetTimerDuration: 10
 --- !u!1 &1256097890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,7 +3724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Add
+  m_text: Ad
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4906,7 +4984,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 91337878}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: CoinClick
         m_Mode: 1
